@@ -175,7 +175,7 @@ const skills = {
 };
 
 
-import {Tabs, TabsContent, TabsList, Tabslist, TabsTrigger} from "@/components/ui/tabs"
+import {Tabs, TabsContent, TabsList,  TabsTrigger} from "@/components/ui/tabs"
 import {Tooltip,
  TooltipContent,
  TooltipProvider,

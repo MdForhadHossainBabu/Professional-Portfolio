@@ -81,28 +81,15 @@ const Contact = () => {
              </p>
              {/* input */}
              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-               {/* from control */}
-               <Container>
-                 <FormControl>
-                   <Input
-                     type="text"
-                     name="name"
-                     placeholder="Type Your Name..."
-                     value={values.name}
-                     onChange={handleChange}
-                   />
-                 </FormControl>
-               </Container>
-
-               {/* <Input type="firstname" placeholder="First Name"/>
+               <Input type="firstname" placeholder="First Name"/>
         <Input type="lastname" placeholder="Last Name"/>
         <Input type="email" placeholder="Email Address"/>
-        <Input type="phone" placeholder="Phone Number"/> */}
+        <Input type="phone" placeholder="Phone Number"/>
              </div>
              {/* textArea */}
-             {/* <Textarea
+             <Textarea
                className="h-[200px]" placeholder="Type your message here"
-             /> */}
+             />
              {/* button */}
              <Button size="md" className="max-w-40">
                Send Message

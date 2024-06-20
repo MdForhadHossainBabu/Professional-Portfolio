@@ -1,9 +1,11 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@radix-ui/react-select";
+
+import { FormControl, Container,Input  } from "@chakra-ui/react";
 
 import {FaPhoneAlt, FaEnvelope, FaMapMarkedAlt} from "react-icons/fa"
 
@@ -30,9 +32,30 @@ const info = [
   },
 ];
 import { motion } from "framer-motion";
+import { useState } from "react";
+
+const initValues = {
+  name: "", 
+  email: "",
+  subject: "", 
+  message: ""
+}
+const initState = { Values: initValues };
 
 
 const Contact = () => {
+
+
+  const [state, setState] = useState(initState);
+  const { values } = state;
+  const handleChange = ({target}) => setState((prev) => ({
+    ...prev,
+    values: {
+      ...prev.values
+    },
+    [target.name]:target.value,
+  }))
+
  return (
    <motion.section
      initial={{ opacity: 0 }}
@@ -50,53 +73,44 @@ const Contact = () => {
        <div className="flex flex-col xl:flex-row gap-[30px]">
          {/* form */}
          <div className="xl:w-[54%] order-2 xl:order-none">
-      <form
-      className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl"
-      >
-       <h3 className="text-4xl text-accent">Let's work together</h3>
-       <p className="text-white/60">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum excepturi doloremque, minus libero quaerat animi.</p>
-       {/* input */}
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input type="firstname" placeholder="First Name"/>
+           <form className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl">
+             <h3 className="text-4xl text-accent">Let's work together</h3>
+             <p className="text-white/60">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
+               excepturi doloremque, minus libero quaerat animi.
+             </p>
+             {/* input */}
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+               {/* from control */}
+               <Container>
+                 <FormControl>
+                   <Input
+                     type="text"
+                     name="name"
+                     placeholder="Type Your Name..."
+                     value={values.name}
+                     onChange={handleChange}
+                   />
+                 </FormControl>
+               </Container>
+
+               {/* <Input type="firstname" placeholder="First Name"/>
         <Input type="lastname" placeholder="Last Name"/>
         <Input type="email" placeholder="Email Address"/>
-        <Input type="phone" placeholder="Phone Number"/>
-       </div>
-       {/* select */}
-       <Select>
-        <SelectTrigger className="w-full">
-         <SelectValue placeholder="Select a service"/>
-        </SelectTrigger>
-        <SelectContent>
-         <SelectGroup>
-          <SelectLabel>
-           Select a service 
-          </SelectLabel>
-          <SelectItem value="est">
-          Web Development
-          </SelectItem>
-          <SelectItem value="cst">
-          UI/UX Design
-          </SelectItem>
-          <SelectItem value="mst">
-          Logo Design
-          </SelectItem>
-
-         </SelectGroup>
-        </SelectContent>
-             </Select>
+        <Input type="phone" placeholder="Phone Number"/> */}
+             </div>
              {/* textArea */}
-             <Textarea
+             {/* <Textarea
                className="h-[200px]" placeholder="Type your message here"
-             />
+             /> */}
              {/* button */}
-             <Button size="md" className="max-w-40">Send Message</Button>
-      </form>
+             <Button size="md" className="max-w-40">
+               Send Message
+             </Button>
+           </form>
          </div>
          {/* info */}
-     <div
-     className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0"
-         >
+         <div className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0">
            <ul className="flex flex-col gap-10">
              {info.map((item, index) => {
                return (
@@ -112,8 +126,7 @@ const Contact = () => {
                );
              })}
            </ul>
-
-     </div>
+         </div>
        </div>
      </div>
    </motion.section>
